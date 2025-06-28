@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: my-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: db
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+
+  milkMate:
+    image: php:8.2-apache
+    container_name: milkmate
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./MilkMate:/var/www/html
+      - ./MilkMate/milkmateconfig.json:/var/www/db_config.php  
+    command: >
+      bash -c "chown -R www-data:www-data /var/www/html && apache2-foreground"
+
+volumes:
+  mysql_data:
