@@ -30,7 +30,7 @@ services:
       - "80:80"
     volumes:
       - ./MilkMate:/var/www/html
-      - ./MilkMate/milkmateconfig.json:/var/www/db_config.php  
+      - ../MilkMate/milkmateconfig.json:/var/www/milkmateconfig.json
     command: >
       bash -c "chown -R www-data:www-data /var/www/html && apache2-foreground"
 
