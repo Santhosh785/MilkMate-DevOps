@@ -1,18 +1,13 @@
-FROM ubuntu:latest
-
-ARG DEBIAN_FRONTEND=noninteractive
+FROM php:8.2-apache
 
 WORKDIR /var/milkmate
 
-RUN apt update && \
-    apt upgrade -y && \
-    apt install -y apache2 php libapache2-mod-php php-mysql nano git && \
-    rm -rf /var/www/html || true && \
-    apt clean && rm -rf /var/lib/apt/lists/*
+# Install PHP mysqli
+RUN docker-php-ext-install mysqli
 
-# ⬇️ COPY must be separate!
-COPY ./data/ .
+# Copy your files
+COPY ./data/ /var/www/html
+COPY ./data/main.sh /var/milkmate/main.sh
 
+# Make main.sh executable
 RUN chmod +x /var/milkmate/main.sh
-
-CMD ["/var/milkmate/main.sh"]

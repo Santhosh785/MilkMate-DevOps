@@ -22,15 +22,22 @@ services:
     ports:
       - "8080:8080"
 
-  milkMate:
-    image: php:8.2-apache
+  milkmate:
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: milkmate
     restart: always
     ports:
       - "80:80"
     volumes:
-      - ./MilkMate:/var/www/html
-      - ../MilkMate/milkmateconfig.json:/var/www/milkmateconfig.json
+      - ../MilkMate/MilkMate:/var/www/html                    # PHP project
+      - ./milkmateconfig.json:/var/www/milkmateconfig.json   # Secure config
+    depends_on:
+      - mysql
+    environment:
+      - APACHE_RUN_USER=www-data
+      - APACHE_RUN_GROUP=www-data
     command: >
       bash -c "chown -R www-data:www-data /var/www/html && apache2-foreground"
 

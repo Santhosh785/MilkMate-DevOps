@@ -1,0 +1,7 @@
+{
+        "db_server":"my-mysql",
+        "db_username":"myuser",
+        "db_password":"mypassword",
+        "db_name":"db",
+        "base_path":"/"
+}

@@ -1,5 +1,9 @@
-#! /bin/bash
+#!/bin/bash
 
-touch /var/helloworld
-git clone https://github.com/Santhosh785/MilkMate.git /var/www/html
-/usr/sbin/apache2ctl -D FOREGROUND
+# Debug check
+echo "🔍 Checking mysqli extension..."
+php -m | grep mysqli || echo "❌ mysqli NOT found!"
+
+# Start Apache
+echo "🚀 Starting Apache..."
+apachectl -D FOREGROUND
