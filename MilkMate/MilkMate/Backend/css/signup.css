@@ -1,0 +1,34 @@
+.form-signup {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+}
+
+.form-signup .checkbox {
+    font-weight: 400;
+}
+
+.form-signup .form-floating:focus-within {
+    z-index: 2;
+}
+
+.form-signup input[type="email"],
+.form-signup input[name="phone"],
+.form-signup input[name="username"] {
+    margin-bottom: -1px;
+    border-radius: 0;
+}
+
+.form-signup input[type="password"] {
+    margin-bottom: 10px;
+    border-radius: 0;
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
